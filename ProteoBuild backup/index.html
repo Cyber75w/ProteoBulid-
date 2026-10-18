@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ProteoBuild - Interactive Simulator for Protein Structure, Folding and Stability</title>
+  <meta name="description" content="An interactive biotechnology educational simulator for protein primary, secondary, tertiary, and quaternary structure, folding forces, and stability. Designed for BIA01 Unit III syllabus.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧬</text></svg>">
+</head>
+<body>
+  <!-- Keyboard accessibility skip link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Site Header & Navigation -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <div class="brand-group">
+        <div class="brand-logo" aria-hidden="true">PB</div>
+        <div class="brand-text">
+          <span class="brand-title">ProteoBuild</span>
+          <span class="brand-tagline">Protein Structure, Folding & Stability</span>
+        </div>
+      </div>
+
+      <nav class="main-nav" role="navigation" aria-label="Main Navigation">
+        <button type="button" class="nav-link active" data-target="overview" id="nav-btn-overview">
+          <span>Overview</span>
+        </button>
+        <button type="button" class="nav-link" data-target="module1" id="nav-btn-module1">
+          <span class="nav-badge">1</span>
+          <span>Amino Acids & Primary</span>
+        </button>
+        <button type="button" class="nav-link" data-target="module2" id="nav-btn-module2">
+          <span class="nav-badge">2</span>
+          <span>Secondary Structure</span>
+        </button>
+        <button type="button" class="nav-link" data-target="module3" id="nav-btn-module3">
+          <span class="nav-badge">3</span>
+          <span>3D Tertiary & Quaternary</span>
+        </button>
+        <button type="button" class="nav-link" data-target="module4" id="nav-btn-module4">
+          <span class="nav-badge">4</span>
+          <span>Stability & Denaturation</span>
+        </button>
+      </nav>
+
+      <div class="header-actions">
+        <div class="progress-pill" id="header-progress-pill" title="Module Completion Progress">
+          <span class="pill-dot"></span>
+          <span id="progress-status-text">0 / 4 Modules Done</span>
+        </div>
+        <button type="button" class="btn btn-outline btn-sm" id="btn-open-library" aria-label="Open Saved Protein Library">
+          <span>📂 Library</span>
+          <span class="nav-badge" id="library-count-badge">5</span>
+        </button>
+        <button type="button" class="icon-btn" id="btn-theme-toggle" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+          <span id="theme-icon">🌙</span>
+        </button>
+        <button type="button" class="icon-btn" id="btn-open-about" aria-label="About ProteoBuild & Scientific Disclaimers" title="About & Team Plan">
+          <span>ℹ️</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Global Progress Strip -->
+    <div class="global-progress-strip" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="global-progress-bar" title="Overall Learning Progress">
+      <div class="global-progress-fill" id="global-progress-fill"></div>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="app-container" id="main-content" role="main">
+
+    <!-- Top Educational Disclaimer Banner -->
+    <aside class="disclaimer-banner" role="note" aria-label="Educational Model Disclaimer">
+      <div class="disclaimer-icon">⚠️</div>
+      <div class="disclaimer-content">
+        <strong>Simplified Educational Model Notice:</strong> ProteoBuild uses conceptual diagrams and illustrative 3D models strictly for educational purposes (BIA01 Unit III syllabus). It does not compute real molecular dynamics, ab-initio folding, or physical structure predictions.
+      </div>
+    </aside>
+
+    <!-- =========================================================================
+         VIEW 0: OVERVIEW & LEARNING JOURNEY
+         ========================================================================= -->
+    <section class="app-view active" id="view-overview" aria-labelledby="overview-heading">
+      <div class="hero-section">
+        <span class="hero-pill">Biotechnology Capstone Project • BIA01 Unit III</span>
+        <h1 class="hero-title" id="overview-heading">ProteoBuild: Interactive Protein Structure & Folding Simulator</h1>
+        <p class="hero-subtitle">
+          Master the principles of protein architecture, from single amino-acid building blocks and local secondary patterns to complete 3D tertiary assemblies and environmental stability dynamics.
+        </p>
+        <div class="hero-cta-group">
+          <button type="button" class="btn btn-primary" id="btn-begin-learning">
+            <span>🚀 Begin Guided Learning Path</span>
+          </button>
+          <button type="button" class="btn btn-outline" id="btn-hero-library">
+            <span>Browse Protein Library</span>
+          </button>
+          <button type="button" class="btn btn-outline" id="btn-hero-certificate" style="display:none;">
+            <span>🎓 View Certificate of Mastery</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 4-Step Learning Path Stepper -->
+      <div class="learning-path-wrapper">
+        <div class="section-header">
+          <h2 class="section-title">The Four-Stage Learning Sequence</h2>
+          <p class="section-desc">Follow the logical progression of protein organization from sequence to environmental stability.</p>
+        </div>
+
+        <div class="path-stepper">
+          <!-- Step 1 Card -->
+          <article class="path-step-card" id="step-card-m1">
+            <div class="step-card-number">1</div>
+            <h3 class="step-card-title">Amino Acids & Primary Structure</h3>
+            <p class="step-card-desc">
+              Explore the 20 standard amino acids, backbone condensation chemistry, and assemble custom polypeptide sequences with real-time property calculations.
+            </p>
+            <div class="step-card-meta">
+              <span>⏱️ ~8 mins</span>
+              <button type="button" class="btn btn-outline btn-sm launch-module-btn" data-target="module1">Start Module 1 ➔</button>
+            </div>
+          </article>
+
+          <!-- Step 2 Card -->
+          <article class="path-step-card" id="step-card-m2">
+            <div class="step-card-number">2</div>
+            <h3 class="step-card-title">Secondary Structure Patterns</h3>
+            <p class="step-card-desc">
+              Compare Alpha-Helices with Parallel and Antiparallel Beta-Sheets. Inspect backbone hydrogen bonding networks and the Ramachandran dihedral angle plot.
+            </p>
+            <div class="step-card-meta">
+              <span>⏱️ ~7 mins</span>
+              <button type="button" class="btn btn-outline btn-sm launch-module-btn" data-target="module2">Start Module 2 ➔</button>
+            </div>
+          </article>
+
+          <!-- Step 3 Card -->
+          <article class="path-step-card" id="step-card-m3">
+            <div class="step-card-number">3</div>
+            <h3 class="step-card-title">3D Tertiary & Quaternary Structure</h3>
+            <p class="step-card-desc">
+              Interact with a 3D Three.js model. Contrast single-chain tertiary folding with multi-subunit quaternary complexes (e.g., Hemoglobin tetramer) and stabilizing forces.
+            </p>
+            <div class="step-card-meta">
+              <span>⏱️ ~8 mins</span>
+              <button type="button" class="btn btn-outline btn-sm launch-module-btn" data-target="module3">Start Module 3 ➔</button>
+            </div>
+          </article>
+
+          <!-- Step 4 Card -->
+          <article class="path-step-card" id="step-card-m4">
+            <div class="step-card-number">4</div>
+            <h3 class="step-card-title">Stability, Denaturation & Renaturation</h3>
+            <p class="step-card-desc">
+              Investigate environmental stress (Temperature, pH, and Urea). Observe dynamic melting curves, conformational state changes, and test renaturation reversibility.
+            </p>
+            <div class="step-card-meta">
+              <span>⏱️ ~7 mins</span>
+              <button type="button" class="btn btn-outline btn-sm launch-module-btn" data-target="module4">Start Module 4 ➔</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =========================================================================
+         VIEW 1: MODULE 1 — AMINO ACIDS & PRIMARY STRUCTURE
+         ========================================================================= -->
+    <section class="app-view" id="view-module1" aria-labelledby="m1-heading">
+      <header class="module-header">
+        <span class="module-badge">Module 1 of 4 • Primary Structure</span>
+        <h2 class="module-title" id="m1-heading">Amino Acids: Building Blocks & Primary Sequence</h2>
+        <p class="module-lead">
+          Understand the common amino-acid backbone, explore the 20 standard side chains and their chemical groupings, and build custom polypeptide sequences.
+        </p>
+      </header>
+
+      <!-- 1. UNDERSTAND -->
+      <section class="rhythm-block">
+        <div class="rhythm-header">
+          <span class="rhythm-badge badge-understand">1. Understand</span>
+          <h3 class="rhythm-title">The General Amino-Acid Backbone & Peptide Bond</h3>
+        </div>
+        <p>
+          Every standard amino acid features a central tetrahedral <strong>alpha-carbon (Cα)</strong> bonded to four distinct chemical partners: a basic <strong>amino group (-NH2)</strong>, an acidic <strong>carboxyl group (-COOH)</strong>, a <strong>hydrogen atom (-H)</strong>, and a variable <strong>side chain (R-group)</strong>. The R-group dictates each amino acid’s unique chemical identity, size, charge, and folding propensity.
+        </p>
+
+        <!-- Labeled Backbone Diagram -->
+        <div class="backbone-diagram-card">
+          <svg viewBox="0 0 680 240" class="backbone-svg" aria-label="General Amino Acid Chemical Backbone Structure">
+            <!-- Central C-alpha -->
+            <circle cx="340" cy="120" r="28" fill="#3D5A80" />
+            <text x="340" y="126" fill="#fff" font-size="16" font-weight="700" text-anchor="middle">Cα</text>
+            <text x="340" y="80" fill="var(--text-secondary)" font-size="12" font-weight="600" text-anchor="middle">Central Alpha-Carbon</text>
+
+            <!-- Amino Group (Left) -->
+            <line x1="220" y1="120" x2="312" y2="120" stroke="var(--border-strong)" stroke-width="4" />
+            <circle cx="180" cy="120" r="32" fill="#E07A5F" />
+            <text x="180" y="126" fill="#fff" font-size="16" font-weight="700" text-anchor="middle">H2N-</text>
+            <text x="180" y="175" fill="#E07A5F" font-size="12" font-weight="700" text-anchor="middle">Amino Group (N-terminus)</text>
+
+            <!-- Carboxyl Group (Right) -->
+            <line x1="368" y1="120" x2="460" y2="120" stroke="var(--border-strong)" stroke-width="4" />
+            <circle cx="500" cy="120" r="32" fill="#6A4C93" />
+            <text x="500" y="126" fill="#fff" font-size="16" font-weight="700" text-anchor="middle">-COOH</text>
+            <text x="500" y="175" fill="#6A4C93" font-size="12" font-weight="700" text-anchor="middle">Carboxyl Group (C-terminus)</text>
+
+            <!-- Top Hydrogen -->
+            <line x1="340" y1="92" x2="340" y2="40" stroke="var(--border-strong)" stroke-width="4" />
+            <circle cx="340" cy="30" r="16" fill="#81B29A" />
+            <text x="340" y="35" fill="#fff" font-size="13" font-weight="700" text-anchor="middle">H</text>
+
+            <!-- Bottom Variable R-Group -->
+            <line x1="340" y1="148" x2="340" y2="200" stroke="#FFB703" stroke-width="5" stroke-dasharray="6,4" />
+            <rect x="300" y="195" width="80" height="34" rx="8" fill="#FFB703" />
+            <text x="340" y="217" fill="#1e293b" font-size="14" font-weight="800" text-anchor="middle">R Group</text>
+            <text x="425" y="217" fill="#b47a46" font-size="11" font-weight="700">Variable Side Chain</text>
+          </svg>
+        </div>
+
+        <!-- Animated Peptide Bond Condensation Visualizer -->
+        <div class="condense-viewer-box">
+          <h4 style="margin-bottom:0.75rem;">Peptide Bond Condensation Synthesis (Dehydration Reaction)</h4>
+          <div class="condense-nav">
+            <button type="button" class="condense-step-btn active" data-step="1">Step 1: Approaching Monomers</button>
+            <button type="button" class="condense-step-btn" data-step="2">Step 2: H2O Elimination</button>
+            <button type="button" class="condense-step-btn" data-step="3">Step 3: Planar Peptide Bond</button>
+          </div>
+
+          <div class="condense-step-card active" id="condense-step-1">
+            <p><strong>Step 1:</strong> The unbonded carboxyl carbon (-COOH) of Residue 1 approaches the unbonded amino nitrogen (-NH2) of Residue 2 in the ribosome active site.</p>
+            <p class="text-muted"><small>Reaction formula: Residue₁-COOH + H₂N-Residue₂</small></p>
+          </div>
+
+          <div class="condense-step-card" id="condense-step-2">
+            <p><strong>Step 2:</strong> Condensation occurs. The hydroxyl group (-OH) from the carboxyl group and a proton (-H) from the amino group combine and are eliminated as one water molecule (H₂O).</p>
+            <p class="text-muted"><small>Dehydration loss: -18.015 Da per peptide linkage formed.</small></p>
+          </div>
+
+          <div class="condense-step-card" id="condense-step-3">
+            <p><strong>Step 3:</strong> A covalent amide <strong>peptide bond (-CO-NH-)</strong> is formed. Crucially, partial double-bond character (40%) restricts rotation around the C-N bond, keeping the peptide plane rigid while permitting rotation around adjacent phi (φ) and psi (ψ) bonds.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. EXPLORE -->
+      <section class="rhythm-block">
+        <div class="rhythm-header">
+          <span class="rhythm-badge badge-explore">2. Explore</span>
+          <h3 class="rhythm-title">The 20 Standard Amino Acids Catalog</h3>
+        </div>
+        <p>
+          Side chains are broadly categorized by polarity, charge, and aromaticity. Select any amino acid to inspect its molecular formula, hydropathy index, and secondary-structure propensity.
+        </p>
+
+        <!-- Search & Filter bar -->
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem; margin-bottom:1rem;">
+          <div class="aa-filter-bar" style="margin-bottom:0;">
+            <button type="button" class="aa-filter-tab active" data-category="all">All 20 Residues</button>
+            <button type="button" class="aa-filter-tab" data-category="nonpolar-aliphatic">Nonpolar, Aliphatic</button>
+            <button type="button" class="aa-filter-tab" data-category="aromatic">Aromatic</button>
+            <button type="button" class="aa-filter-tab" data-category="polar-uncharged">Polar, Uncharged</button>
+            <button type="button" class="aa-filter-tab" data-category="positive-charge">Basic (+)</button>
+            <button type="button" class="aa-filter-tab" data-category="negative-charge">Acidic (-)</button>
+          </div>
+          <input type="text" id="aa-search-input" class="form-input" style="max-width:240px; padding:0.35rem 0.75rem; font-size:0.85rem;" placeholder="🔍 Search residue...">
+        </div>
+
+        <!-- 20 AA Button Grid -->
+        <div class="aa-picker-grid" id="aa-picker-grid"></div>
+
+        <!-- Inspection Details Card -->
+        <div class="aa-inspect-card" id="aa-inspect-detail">
+          <p class="text-muted">Hover or click any amino acid button above to view its detailed physicochemical properties.</p>
+        </div>
+      </section>
+
+      <!-- 3. TRY: Interactive Sequence Builder -->
+      <section class="rhythm-block">
+        <div class="rhythm-header">
+          <span class="rhythm-badge badge-try">3. Try</span>
+          <h3 class="rhythm-title">Interactive Primary Sequence Builder</h3>
+        </div>
+        <p>
+          Construct a polypeptide sequence residue by residue. ProteoBuild dynamically computes the sequence’s molecular weight (accounting for water loss during condensation), estimated isoelectric point (pI), net charge at pH 7.4, and hydropathy score.
+        </p>
+
+        <div class="builder-workspace">
+          <!-- Sequence Name and Notes -->
+          <div class="builder-inputs-row">
+            <div class="form-group">
+              <label for="seq-name-input" class="form-label">Sequence Name:</label>
+              <input type="text" id="seq-name-input" class="form-input" value="My Custom Polypeptide" placeholder="e.g., Myoglobin Helix A">
+            </div>
+            <div class="form-group">
+              <label for="seq-notes-input" class="form-label">Educational Notes:</label>
+              <input type="text" id="seq-notes-input" class="form-input" value="Synthetic educational sequence" placeholder="Optional notes regarding function or motifs">
+            </div>
+          </div>
+
+          <!-- Tokens Display Container -->
+          <div class="form-label">Primary Structure (N-terminus ➔ C-terminus): Click residue token to remove</div>
+          <div class="tokens-scroll-area" id="sequence-tokens-container" role="region" aria-label="Assembled Amino Acid Sequence"></div>
+
+          <!-- Raw text readout -->
+          <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:1rem;">
+            <span>Raw Sequence: </span><code id="raw-sequence-text"></code>
+          </div>
+
+          <!-- Live Physicochemical Properties Grid -->
+          <div class="seq-stats-grid">
+            <div class="stat-card">
+              <div class="stat-label">Length</div>
+              <div class="stat-value" id="stat-length">0</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Molecular Weight</div>
+              <div class="stat-value" id="stat-mw">0.0 Da</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Estimated pI</div>
+              <div class="stat-value" id="stat-pi">—</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Net Charge (pH 7.4)</div>
+              <div class="stat-value" id="stat-charge">0.0</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">GRAVY Hydropathy</div>
+              <div class="stat-value" id="stat-gravy">0.00</div>
+            </div>
+          </div>
+
+          <!-- Composition Distribution Bar -->
+          <div class="comp-bar-wrapper">
+            <div class="form-label">Side Chain Class Composition:</div>
+            <div class="comp-bar-container" id="composition-bar-container"></div>
+            <div class="comp-legend" id="composition-legend"></div>
+          </div>
+
+          <!-- Action Toolbar -->
+          <div class="builder-actions-toolbar">
+            <div class="action-group">
+              <button type="button" class="btn btn-primary" id="seq-save-btn">💾 Save to Library</button>
+              <button type="button" class="btn btn-coral" id="seq-send-viewer-btn">👁️ View in 3D</button>
+              <button type="button" class="btn btn-outline" id="seq-undo-btn" title="Remove the last added residue">⌫ Delete Last</button>
+              <button type="button" class="btn btn-outline" id="seq-random-btn" title="Generate random 12-residue test motif">🎲 Random 12-mer</button>
+              <button type="button" class="btn btn-outline" id="seq-clear-btn">Clear All</button>
+            </div>
+            <div class="action-group">
+              <span style="font-size:0.82rem; color:var(--text-muted); align-self:center;">Motif Presets:</span>
+              <button type="button" class="btn btn-outline btn-sm load-sample-seq-btn" data-name="Myoglobin N-Terminus" data-seq="VLSEGEWQLVLHVWAKVEADVAG">Myoglobin</button>
+              <button type="button" class="btn btn-outline btn-sm load-sample-seq-btn" data-name="Beta Hairpin" data-seq="RGKWTYNGITYEGR">Hairpin</button>
+              <button type="button" class="btn btn-outline btn-sm load-sample-seq-btn" data-name="Insulin Segment" data-seq="GIVEQCCTSICSLYQLENYCN">Insulin</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. KEY CONCEPT INSIGHTS & TAKEAWAYS -->
+      <section class="rhythm-block">
+        <div class="rhythm-header">
+          <span class="rhythm-badge badge-reflect">4. Key Insights</span>
+          <h3 class="rhythm-title">Primary Structure Insights & Core Rules</h3>
+        </div>
+        <div class="insights-cards-grid">
+          <div class="insight-card">
+            <div class="insight-icon">🧭</div>
+            <h4 class="insight-title">Intrinsic Chemical Directionality</h4>
+            <p class="insight-text">
+              Polypeptides strictly flow from the <strong>N-terminus</strong> (free amino group, $\text{H}_2\text{N}-$) to the <strong>C-terminus</strong> (free carboxyl group, $-\text{COOH}$). Inverting the sequence creates a completely distinct chemical molecule with altered dipole moments and folding dynamics.
+            </p>
+          </div>
+
+          <div class="insight-card">
+            <div class="insight-icon">⚖️</div>
+            <h4 class="insight-title">Side Chain Chemical Diversity</h4>
+            <p class="insight-text">
+              While the $-\text{CO}-\text{NH}-$ backbone is identical across all residues, the 20 variable <strong>R-groups</strong> govern folding behavior. Nonpolar aliphatics cluster inside to escape water, basic and acidic residues form electrostatic salt bridges, and aromatic rings engage in $\pi$-$\pi$ stacking.
+            </p>
+          </div>
+
+          <div class="insight-card">
+            <div class="insight-icon">🔒</div>
+            <h4 class="insight-title">Rigid Planar Peptide Bond</h4>
+            <p class="insight-text">
+              The peptide bond has ~40% double-bond character due to resonance between oxygen and nitrogen. This eliminates rotation around the $\text{C}-\text{N}$ amide linkage, restricting backbone conformational freedom exclusively to the adjacent $\phi$ (phi) and $\psi$ (psi) single bonds.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. KNOWLEDGE CHECK & MASTERY QUIZ -->
+      <section class="rhythm-block quiz-section" id="quiz-section-module1">
+        <div class="rhythm-header">
+          <span class="rhythm-badge badge-quiz">5. Knowledge Check</span>
+          <h3 class="rhythm-title">Module 1 Knowledge Check & Mastery Quiz</h3>
+        </div>
+        <p class="quiz-intro-desc">
+          Test your understanding of amino acid backbone anatomy, side chain properties, and sequence directionality.
+          <strong>Score at least 80% to complete this module and unlock your Certificate of Mastery.</strong>
+        </p>
+        <div class="quiz-container" id="quiz-container-module1"></div>
+      </section>
+
+      <!-- Module Navigation Footer Pager -->
+      <nav class="module-pager" aria-label="Module 1 Pagination">
+        <button type="button" class="btn btn-outline launch-module-btn" data-target="overview">
+          <span>⬅ Overview</span>
+        </button>
+        <button type="button" class="btn btn-primary mark-module-complete-btn" data-module="module1" data-next="module2">
+          <span>Complete Module 1 & Continue to Secondary Structure ➔</span>
+        </button>
+      </nav>
+    </section>
+
+
+    <!-- =========================================================================
+         VIEW 2: MODULE 2 — SECONDARY STRUCTURE
+         ========================================================================= -->
+    <section class="app-view" id="view-module2" aria-labelledby="m2-heading">
+      <header class="module-header">
+        <span class="module-badge">Module 2 of 4 • Secondary Structure</span>
+        <h2 class="module-title" id="m2-heading">Secondary Structure: Alpha-Helices & Beta-Sheets</h2>
+        <p class="module-lead">
+          Explore local, repeating conformational patterns in the polypeptide backbone stabilized by hydrogen bonds between carbonyl oxygens and amide nitrogens.
+        </p>
+      </header>
+
+      <!-- 1. UNDERSTAND -->
+      <section class="rhythm-block">
+        <div class="rhythm-header">
+          <span class="rhythm-badge badge-understand">1. Understand</span>
+          <h3 class="rhythm-title">Backbone Hydrogen Bonds as Structural Glue</h3>
+        </div>
+        <p>
+          Unlike the primary sequence, which is defined by covalent peptide bonds, <strong>secondary structure</strong> describes regular geometric arrangements formed through non-covalent <strong>hydrogen bonds</strong> between the peptide backbone’s carbonyl oxygen (C=O) and amide hydrogen (N-H). Side chains do not participate in these backbone H-bonds directly, but their steric bulk and charge influence which secondary patterns can form.
+        </p>
+      </section>
+
+      <!-- 2. EXPLORE & 3. TRY: Interactive Comparison -->
+      <section class="rhythm-block">
+        <div class="rhythm-header">
+          <span class="rhythm-badge badge-explore">2. Explore & 3. Try</span>
+          <h3 class="rhythm-title">Interactive Secondary Structure Comparison</h3>
+        </div>
+        <p>
+          Switch between the standard <strong>Alpha-Helix</strong>, <strong>Antiparallel Beta-Sheet</strong>, and <strong>Parallel Beta-Sheet</strong> to compare hydrogen bond orientations and side chain projections.
+        </p>
+
+        <!-- Controls Bar -->
+        <div class="sec-controls-bar">
+          <div class="sec-mode-switcher" role="tablist" aria-label="Secondary Structure Modes">
+            <button type="button" class="sec-mode-btn active" data-mode="helix" role="tab" aria-selected="true">Alpha-Helix (α-Helix)</button>
+            <button type="button" class="sec-mode-btn" data-mode="beta-antiparallel" role="tab" aria-selected="false">Antiparallel β-Sheet</button>
+            <button type="button" class="sec-mode-btn" data-mode="beta-parallel" role="tab" aria-selected="false">Parallel β-Sheet</button>
+          </div>
+
+          <div class="sec-toggles-group">
+            <label class="toggle-label">
+              <input type="checkbox" id="toggle-sec-hbonds" checked>
+              <span>Highlight H-Bonds (Gold)</span>
+            </label>
+            <label class="toggle-label">
+              <input type="checkbox" id="toggle-sec-sidechains" checked>
+              <span>Show Side Chains (R)</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Dynamic SVG Diagram Canvas -->
+        <div id="secondary-diagram-container"></div>
+
+        <!-- Details Card -->
+        <div id="secondary-details-panel"></div>
+
+        <!-- Ramachandran Plot Explorer -->
+        <div class="ramachandran-wrapper">
+          <div class="rama-canvas-box">
+            <h4 style="margin-bottom:0.5rem;">Interactive Ramachandran Plot</h4>
+            <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:0.75rem;">Click or drag inside the plot to test backbone dihedral angles (φ, ψ).</p>
+            <canvas id="ramachandran-canvas" width="320" height="320" aria-label="Interactive Ramachandran Plot Canvas"></canvas>
+          </div>
+
+          <div class="rama-info-box">
+            <div id="ramachandran-readout"></div>
+            <p style="font-size:0.88rem; color:var(--text-secondary);">
+              G. N. Ramachandran demonstrated that steric clashes between backbone atoms and side chains forbid most combinations of dihedral angles (phi φ and psi ψ). Only specific energetic conformations are permitted:
+            </p>
+            <div class="rama-presets-row">
+              <button type="button" class="btn btn-outline btn-sm rama-preset-btn" data-phi="-57" data-psi="-47">α-Helix (Right) (-57°, -47°)</button>
+              <button type="button" class="btn btn-outline btn-sm rama-preset-btn" data-phi="-139" data-psi="135">β-Sheet (-139°, +135°)</button>
+              <button type="button" class="btn btn-outline btn-sm rama-preset-btn" data-phi="60" data-psi="45">Left-Handed α (+60°, +45°)</button>
+              <button type="button" class="btn btn-outline btn-sm rama-preset-btn" data-phi="0" data-psi="0">Disallowed Clash (0°, 0°)</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. KEY CONCEPT INSIGHTS & TAKEAWAYS -->
+      <section class="rhythm-block">
+        <div class="rhythm-header">
+          <span class="rhythm-badge badge-reflect">4. Key Insights</span>
+          <h3 class="rhythm-title">Secondary Structure Core Principles</h3>
+        </div>
+        <div class="insights-cards-grid">
+          <div class="insight-card">
+            <div class="insight-icon">🌀</div>
+            <h4 class="insight-title">The Pauling α-Helix Metrics</h4>
+            <p class="insight-text">
+              Features <strong>3.6 residues per turn</strong> and a <strong>5.4 Å pitch</strong>. Each peptide carbonyl oxygen ($C=O$) of residue $i$ forms a direct hydrogen bond with the amide hydrogen ($N-H$) of residue $i+4$. All hydrogen bonds point along the helical axis, establishing an intrinsic electrical dipole.
+            </p>
+          </div>
+
+          <div class="insight-card">
+            <div class="insight-icon">📐</div>
+            <h4 class="insight-title">Antiparallel vs. Parallel β-Sheets</h4>
+            <p class="insight-text">
+              In <strong>antiparallel sheets</strong>, opposing strand directions allow 180° linear, perpendicular hydrogen bonds, conferring higher thermodynamic stability. In <strong>parallel sheets</strong>, matching strand directions produce angled, staggered hydrogen bonds with slightly lower relative stability.
+            </p>
+          </div>
+
+          <div class="insight-card">
+            <div class="insight-icon">🚫</div>
+            <h4 class="insight-title">Helix Breakers: Proline & Glycine</h4>
+            <p class="insight-text">
+              <strong>Proline</strong> introduces a rigid pyrrolidine ring that locks $\phi \approx -65^\circ$ and lacks an amide proton to donate. <strong>Glycine</strong> has no side chain, conferring extreme conformational entropy that resists helical confinement. Both frequently terminate helices and initiate sharp turns.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. KNOWLEDGE CHECK & MASTERY QUIZ -->
+      <section class="rhythm-block quiz-section" id="quiz-section-module2">
+        <div class="rhythm-header">
+          <span class="rhythm-badge badge-quiz">5. Knowledge Check</span>
+          <h3 class="rhythm-title">Module 2 Knowledge Check & Mastery Quiz</h3>
+        </div>
+        <p class="quiz-intro-desc">
+          Verify your grasp of alpha-helices, beta-sheets, and the stabilizing role of backbone hydrogen bonds.
+          <strong>Score at least 80% to complete this module and unlock your Certificate of Mastery.</strong>
+        </p>
+        <div class="quiz-container" id="quiz-container-module2"></div>
+      </section>
+
+      <!-- Module Navigation Footer Pager -->
+      <nav class="module-pager" aria-label="Module 2 Pagination">
+        <button type="button" class="btn btn-outline launch-module-btn" data-target="module1">
+          <span>⬅ Previous: Primary Structure</span>
+        </button>
+        <button type="button" class="btn btn-primary mark-module-complete-btn" data-module="module2" data-next="module3">
+          <span>Complete Module 2 & Continue to 3D Viewer ➔</span>
+        </button>
+      </nav>
+    </section>
+
+
+    <!-- =========================================================================
+         VIEW 3: MODULE 3 — TERTIARY & QUATERNARY STRUCTURE (THREE.JS)
+         ========================================================================= -->
+    <section class="app-view" id="view-module3" aria-labelledby="m3-heading">
+      <header class="module-header">
+        <span class="module-badge">Module 3 of 4 • 3D Architecture</span>
+        <h2 class="module-title" id="m3-heading">3D Architecture: Tertiary & Quaternary Structure</h2>
+        <p class="module-lead">
+          Explore the overall three-dimensional folding of a single polypeptide chain (tertiary structure) and multi-subunit assemblies (quaternary structure) in an interactive 3D model.
+        </p>
+      </header>
+
+      <!-- 1. UNDERSTAND -->
+      <section class="rhythm-block">
+        <div class="rhythm-header">
+          <span class="rhythm-badge badge-understand">1. Understand</span>
+          <h3 class="rhythm-title">Tertiary Folding vs. Quaternary Assembly</h3>
+        </div>
+        <p>
+          <strong>Tertiary structure</strong> is the complete 3D spatial conformation of a single polypeptide chain. It is driven thermodynamically by the <strong>hydrophobic effect</strong> (burying nonpolar side chains in an interior core away from water), and further stabilized by non-covalent hydrogen bonds, ionic salt bridges, and covalent disulfide bridges (-S-S-).
+        </p>
+        <p>
+          <strong>Quaternary structure</strong> arises when two or more independent polypeptide chains (called subunits) assemble into a stable, functional oligomeric complex (such as the α₂β₂ tetramer of Hemoglobin).
+        </p>
+      </section>
+
+      <!-- 2. EXPLORE & 3. TRY: Three.js 3D Viewer -->
+      <section class="rhythm-block">
+        <div class="rhythm-header">
+          <span class="rhythm-badge badge-explore">2. Explore & 3. Try</span>
+          <h3 class="rhythm-title">Interactive 3D Teaching Visualization</h3>
+        </div>
+        <p>
+          Use your mouse or touch gestures to <strong>rotate, zoom, and inspect</strong> the 3D protein structure. Toggle between a single monomer chain and multi-subunit assemblies to observe quaternary organization.
+        </p>
+
+        <!-- 3D Layout -->
+        <div class="viewer-3d-layout">
+          <!-- Canvas area -->
+          <div class="viewer-3d-canvas-wrapper">
+            <canvas id="three-canvas" aria-label="Interactive Three.js 3D Protein Structural Model"></canvas>
+
+            <!-- Overlay toolbar -->
+            <div class="viewer-overlay-toolbar">
+              <div class="viewer-assembly-switcher">
+                <button type="button" class="assembly-btn active" data-assembly="monomer">Monomer (Tertiary)</button>
+                <button type="button" class="assembly-btn" data-assembly="dimer">Dimer (2 Subunits)</button>
+                <button type="button" class="assembly-btn" data-assembly="tetramer">Tetramer (α₂β₂)</button>
+              </div>
+
+              <div style="display:flex; gap:0.35rem;">
+                <button type="button" class="btn btn-outline btn-sm" id="btn-3d-reset-view" style="background:var(--bg-surface-translucent);" title="Reset Camera View">
+                  🔄 Reset
+                </button>
+              </div>
+            </div>
+
+            <!-- Gesture / Touch Helper Badge -->
+            <div class="viewer-gesture-hint">
+              <span>🖱️ Drag to rotate • 🔍 Scroll to zoom • ✋ Right-click to pan</span>
+            </div>
+          </div>
+
+          <!-- Controls & Info Sidebar -->
+          <div class="viewer-sidebar-panel">
+            <div class="viewer-controls-card">
+              <h4 style="margin-bottom:0.75rem;">Preset Structural Models</h4>
+              <div class="form-group" style="margin-bottom:1rem;">
+                <label for="preset-protein-select" class="form-label">Select Reference Complex:</label>
+                <select id="preset-protein-select" class="form-input">
+                  <option value="myoglobin">Myoglobin (All-Alpha Monomer)</option>
+                  <option value="hemoglobin">Hemoglobin (Allosteric Tetramer)</option>
+                  <option value="insulin">Insulin (Dimer with Disulfides)</option>
+                  <option value="lysozyme">Lysozyme (Alpha+Beta Enzyme)</option>
+                </select>
+              </div>
+
+              <h4 style="margin-bottom:0.5rem;">Representation Style</h4>
+              <div style="display:flex; gap:0.35rem; margin-bottom:1rem;">
+                <button type="button" class="btn btn-outline btn-sm viewer-style-btn active" data-style="cartoon">Ribbon Cartoon</button>
+                <button type="button" class="btn btn-outline btn-sm viewer-style-btn" data-style="tube">Backbone Tube</button>
+                <button type="button" class="btn btn-outline btn-sm viewer-style-btn" data-style="atoms">Atoms Spheres</button>
+              </div>
+
+              <h4 style="margin-bottom:0.5rem;">Stabilizing Forces</h4>
+              <div style="display:flex; flex-direction:column; gap:0.4rem; font-size:0.85rem; margin-bottom:1rem;">
+                <label class="toggle-label">
+                  <input type="checkbox" id="toggle-3d-hbonds" checked>
+                  <span>Hydrogen Bonds (Yellow Dashed)</span>
+                </label>
+                <label class="toggle-label">
+                  <input type="checkbox" id="toggle-3d-disulfides" checked>
+                  <span>Covalent Disulfides (Gold Rods)</span>
+                </label>
+                <label class="toggle-label">
+                  <input type="checkbox" id="toggle-3d-hydrophobic" checked>
+                  <span>Hydrophobic Core (Amber Sphere)</span>
+                </label>
+                <label class="toggle-label">
+                  <input type="checkbox" id="toggle-3d-autorotate" checked>
+                  <span>Auto-Rotate Model</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Sequence reference card -->
+            <div class="viewer-controls-card">
+              <h4 id="viewer-protein-title">Myoglobin (Monomer)</h4>
+              <div id="viewer-protein-desc" style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:0.75rem;">
+                <strong>Tertiary Single-Chain Globule:</strong> Illustrates the 3D folded architecture of a single polypeptide chain stabilized by a central hydrophobic core.
+              </div>
+              <div class="form-label">Linked Primary Sequence Reference:</div>
+              <div class="viewer-linked-seq-box" id="viewer-linked-seq"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. KEY CONCEPT INSIGHTS & TAKEAWAYS -->
+      <section class="rhythm-block">
+        <div class="rhythm-header">
+          <span class="rhythm-badge badge-reflect">4. Key Insights</span>
+          <h3 class="rhythm-title">3D Architecture Core Principles</h3>
+        </div>
+        <div class="insights-cards-grid">
+          <div class="insight-card">
+            <div class="insight-icon">💧</div>
+            <h4 class="insight-title">The Hydrophobic Effect</h4>
+            <p class="insight-text">
+              The primary thermodynamic engine of tertiary folding. Burying nonpolar side chains in the interior core releases cages of ordered water molecules, producing an enormous favorable increase in solvent entropy ($\Delta S_\text{water} > 0$).
+            </p>
+          </div>
+
+          <div class="insight-card">
+            <div class="insight-icon">🛡️</div>
+            <h4 class="insight-title">Covalent Disulfide Bridges</h4>
+            <p class="insight-text">
+              Two cysteine residues in close proximity can oxidize to form a covalent cystine bridge ($-S-S-$). Disulfides provide vital structural reinforcement, locking folds against extracellular mechanical and thermal stresses (e.g. Insulin and Lysozyme).
+            </p>
+          </div>
+
+          <div class="insight-card">
+            <div class="insight-icon">🧩</div>
+            <h4 class="insight-title">Quaternary Allosteric Cooperativity</h4>
+            <p class="insight-text">
+              Multi-subunit assemblies (such as the Hemoglobin $\alpha_2\beta_2$ tetramer) interact across non-covalent subunit interfaces. Subunit repositioning facilitates cooperative ligand binding, enabling allosteric regulation impossible in simple monomers.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. KNOWLEDGE CHECK & MASTERY QUIZ -->
+      <section class="rhythm-block quiz-section" id="quiz-section-module3">
+        <div class="rhythm-header">
+          <span class="rhythm-badge badge-quiz">5. Knowledge Check</span>
+          <h3 class="rhythm-title">Module 3 Knowledge Check & Mastery Quiz</h3>
+        </div>
+        <p class="quiz-intro-desc">
+          Assess your understanding of 3D single-chain folding versus multi-subunit quaternary architecture.
+          <strong>Score at least 80% to complete this module and unlock your Certificate of Mastery.</strong>
+        </p>
+        <div class="quiz-container" id="quiz-container-module3"></div>
+      </section>
+
+      <!-- Module Navigation Footer Pager -->
+      <nav class="module-pager" aria-label="Module 3 Pagination">
+        <button type="button" class="btn btn-outline launch-module-btn" data-target="module2">
+          <span>⬅ Previous: Secondary Structure</span>
+        </button>
+        <button type="button" class="btn btn-primary mark-module-complete-btn" data-module="module3" data-next="module4">
+          <span>Complete Module 3 & Continue to Stability Lab ➔</span>
+        </button>
+      </nav>
+    </section>
+
+
+    <!-- =========================================================================
+         VIEW 4: MODULE 4 — STABILITY, DENATURATION & RENATURATION
+         ========================================================================= -->
+    <section class="app-view" id="view-module4" aria-labelledby="m4-heading">
+      <header class="module-header">
+        <span class="module-badge">Module 4 of 4 • Stability & Dynamics</span>
+        <h2 class="module-title" id="m4-heading">Protein Stability, Denaturation & Renaturation</h2>
+        <p class="module-lead">
+          Investigate how temperature, pH, and chemical denaturants perturb non-covalent interactions, observe melting curve transitions, and explore conditions for renaturation.
+        </p>
+      </header>
+
+      <!-- 1. UNDERSTAND -->
+      <section class="rhythm-block">
+        <div class="rhythm-header">
+          <span class="rhythm-badge badge-understand">1. Understand</span>
+          <h3 class="rhythm-title">Thermodynamic Marginal Stability & Denaturation</h3>
+        </div>
+        <p>
+          The native functional fold of a globular protein is marginally stable: the net free energy of folding (ΔG_fold) is typically only -20 to -60 kJ/mol (equivalent to just a few hydrogen bonds). Consequently, modest changes in environmental conditions can disrupt this equilibrium:
+        </p>
+        <ul style="margin-left: 1.5rem; margin-bottom: 1rem; color: var(--text-secondary);">
+          <li><strong>Temperature:</strong> Thermal kinetic energy disrupts weak hydrogen bonds and loosens hydrophobic packing. Above the melting temperature (Tm), the polypeptide unfolds.</li>
+          <li><strong>pH:</strong> Changes in [H+] alter the protonation state of ionizable side chains (Asp, Glu, Lys, Arg, His), abolishing stabilizing salt bridges and creating electrostatic repulsion.</li>
+          <li><strong>Chemical Denaturants (Urea / GdnHCl):</strong> Solvate the peptide backbone and nonpolar side chains, diminishing the hydrophobic effect that stabilizes the core.</li>
+        </ul>
+      </section>
+
+      <!-- 2. EXPLORE & 3. TRY: Environmental Simulation Lab -->
+      <section class="rhythm-block">
+        <div class="rhythm-header">
+          <span class="rhythm-badge badge-explore">2. Explore & 3. Try</span>
+          <h3 class="rhythm-title">Interactive Environmental Stress Laboratory</h3>
+        </div>
+        <p>
+          Adjust the environmental controls below to observe real-time impacts on protein conformation, the dynamic thermal melting curve, and the illustrative stability score.
+        </p>
+
+        <div class="stability-lab-grid">
+          <!-- Environmental Controls Panel -->
+          <div class="conditions-panel">
+            <h4 style="margin-bottom:0.25rem;">Environmental Controls</h4>
+            <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:0.75rem;">Adjust parameters or pick a 1-click stress condition:</p>
+
+            <!-- 1-Click Environmental Presets -->
+            <div class="env-presets-grid">
+              <button type="button" class="btn btn-outline btn-sm env-preset-btn" data-temp="37" data-ph="7.4" data-denat="0">🌡️ 37°C Normal</button>
+              <button type="button" class="btn btn-outline btn-sm env-preset-btn" data-temp="75" data-ph="7.4" data-denat="0">🔥 75°C Heat</button>
+              <button type="button" class="btn btn-outline btn-sm env-preset-btn" data-temp="95" data-ph="7.4" data-denat="0">⚡ 95°C Boil</button>
+              <button type="button" class="btn btn-outline btn-sm env-preset-btn" data-temp="37" data-ph="2.0" data-denat="0">🍋 Acid pH 2</button>
+              <button type="button" class="btn btn-outline btn-sm env-preset-btn" data-temp="37" data-ph="11.5" data-denat="0">🧼 Base pH 11.5</button>
+              <button type="button" class="btn btn-outline btn-sm env-preset-btn" data-temp="37" data-ph="7.4" data-denat="6">🧪 6 M Urea</button>
+            </div>
+
+            <!-- Temperature Slider -->
+            <div class="condition-slider-box">
+              <div class="slider-label-row">
+                <span>Temperature (°C):</span>
+                <span class="slider-val-badge" id="val-temperature">37.0 °C</span>
+              </div>
+              <input type="range" id="slider-temperature" class="styled-slider" min="0" max="100" step="0.5" value="37" aria-label="Temperature slider in Celsius">
+              <small style="color:var(--text-muted);">Physiological baseline: 37°C</small>
+            </div>
+
+            <!-- pH Slider -->
+            <div class="condition-slider-box">
+              <div class="slider-label-row">
+                <span>pH (Acidity/Alkalinity):</span>
+                <span class="slider-val-badge" id="val-ph">7.4</span>
+              </div>
+              <input type="range" id="slider-ph" class="styled-slider" min="0" max="14" step="0.1" value="7.4" aria-label="pH slider">
+              <small style="color:var(--text-muted);">Physiological baseline: pH 7.4</small>
+            </div>
+
+            <!-- Urea Denaturant Slider -->
+            <div class="condition-slider-box">
+              <div class="slider-label-row">
+                <span>Denaturant (Urea / GdnHCl):</span>
+                <span class="slider-val-badge" id="val-denaturant">0.0 M</span>
+              </div>
+              <input type="range" id="slider-denaturant" class="styled-slider" min="0" max="8" step="0.1" value="0" aria-label="Denaturant concentration slider in Molar">
+              <small style="color:var(--text-muted);">0.0 M (Pure buffer) to 8.0 M (Strong chaotrope)</small>
+            </div>
+
+            <!-- Stability Meter Gauge -->
+            <div class="stability-meter-box">
+              <div class="stability-meter-ring">
+                <div class="meter-inner">
+                  <span class="meter-score" id="stability-meter-score">95%</span>
+                  <span class="meter-score-label">Illustrative Score</span>
+                </div>
+              </div>
+              <span class="meter-status-tag status-success" id="stability-meter-status">Native Folded Conformation</span>
+              <p style="font-size:0.75rem; color:var(--text-muted); margin-top:0.5rem;">
+                <em>Illustrative model score: Not an experimental measurement or biochemical prediction.</em>
+              </p>
+            </div>
+
+            <!-- Actions -->
+            <div style="display:flex; flex-direction:column; gap:0.5rem;">
+              <button type="button" class="btn btn-outline" id="btn-reset-stability">Reset to Physiological Baseline</button>
+              <button type="button" class="btn btn-coral" id="btn-attempt-renaturation">Attempt Renaturation Test</button>
+            </div>
+
+            <!-- Inline Renaturation Result Banner -->
+            <div id="renaturation-result-box" style="display:none; margin-top:0.75rem;"></div>
+          </div>
+
+          <!-- Dynamic Visualizations Column -->
+          <div class="visuals-column">
+            <!-- 1. Live Melting Curve Canvas -->
+            <div class="chart-card">
+              <div class="chart-card-title">
+                <span>Dynamic Thermal Melting Curve (θ vs Temperature)</span>
+                <span style="font-size:0.78rem; color:var(--accent-lavender); font-weight:600;">Two-State Sigmoidal Transition</span>
+              </div>
+              <canvas id="melting-curve-canvas" class="chart-canvas" width="600" height="240" aria-label="Dynamic Melting Curve Plot"></canvas>
+            </div>
+
+            <!-- 2. Live Conformation Visual Canvas -->
+            <div class="chart-card">
+              <div class="chart-card-title">
+                <span>Simulated Molecular Conformation State</span>
+                <span style="font-size:0.78rem; color:var(--text-muted);">Dynamic Polymer Morphing</span>
+              </div>
+              <canvas id="conformation-canvas" class="chart-canvas" width="600" height="220" aria-label="Simulated Conformation Canvas"></canvas>
+            </div>
+
+            <!-- Live Explanation Text Card -->
+            <div class="chart-card">
+              <h4 style="margin-bottom:0.5rem;">Biochemical Mechanism Under Current Conditions</h4>
+              <div id="stability-explanation-text" style="font-size:0.9rem; color:var(--text-secondary);"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. KEY CONCEPT INSIGHTS & TAKEAWAYS -->
+      <section class="rhythm-block">
+        <div class="rhythm-header">
+          <span class="rhythm-badge badge-reflect">4. Key Insights</span>
+          <h3 class="rhythm-title">Thermodynamic Stability & Denaturation Principles</h3>
+        </div>
+        <div class="insights-cards-grid">
+          <div class="insight-card">
+            <div class="insight-icon">⚖️</div>
+            <h4 class="insight-title">Marginal Thermodynamic Stability</h4>
+            <p class="insight-text">
+              The native fold is only marginally favored ($\Delta G_\text{fold} \approx -20\text{ to }-60\text{ kJ/mol}$, equivalent to just a few hydrogen bonds). This marginal balance is biologically essential: it allows conformational flexibility for enzyme catalysis and allosteric regulation, but makes proteins sensitive to environmental denaturation.
+            </p>
+          </div>
+
+          <div class="insight-card">
+            <div class="insight-icon">📈</div>
+            <h4 class="insight-title">Cooperative Two-State Unfolding</h4>
+            <p class="insight-text">
+              Protein denaturation is highly cooperative ("all-or-none"): as the first few interactions rupture, the entire structure rapidly collapses. This produces the characteristic sigmoidal melting curve, with a sharp inflection point defining the melting temperature ($T_m$).
+            </p>
+          </div>
+
+          <div class="insight-card">
+            <div class="insight-icon">🧪</div>
+            <h4 class="insight-title">Anfinsen's Renaturation Dogma</h4>
+            <p class="insight-text">
+              Christian Anfinsen’s classic ribonuclease A experiment proved that the primary amino-acid sequence contains all the necessary thermodynamic information to direct 3D folding. While gentle renaturation is possible in vitro, severe thermal denaturation exposes hydrophobic patches that can trigger irreversible aggregation.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. KNOWLEDGE CHECK & MASTERY QUIZ -->
+      <section class="rhythm-block quiz-section" id="quiz-section-module4">
+        <div class="rhythm-header">
+          <span class="rhythm-badge badge-quiz">5. Knowledge Check</span>
+          <h3 class="rhythm-title">Module 4 Knowledge Check & Mastery Quiz</h3>
+        </div>
+        <p class="quiz-intro-desc">
+          Test your grasp of environmental denaturation factors and the thermodynamic principles of folding reversibility.
+          <strong>Score at least 80% to complete this module and unlock your Certificate of Mastery.</strong>
+        </p>
+        <div class="quiz-container" id="quiz-container-module4"></div>
+      </section>
+
+      <!-- Module Navigation Footer Pager -->
+      <nav class="module-pager" aria-label="Module 4 Pagination">
+        <button type="button" class="btn btn-outline launch-module-btn" data-target="module3">
+          <span>⬅ Previous: 3D Architecture</span>
+        </button>
+        <button type="button" class="btn btn-primary mark-module-complete-btn" data-module="module4" data-next="certificate">
+          <span>🎉 Complete Course & View Certificate of Mastery ➔</span>
+        </button>
+      </nav>
+    </section>
+
+  </main>
+
+
+  <!-- =========================================================================
+       MODAL 1: SAVED PROTEIN LIBRARY
+       ========================================================================= -->
+  <div class="modal-backdrop" id="modal-library" role="dialog" aria-modal="true" aria-labelledby="library-modal-title">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3 class="modal-title" id="library-modal-title">Saved Protein Library (Local Browser Storage)</h3>
+        <button type="button" class="icon-btn close-modal-btn" data-modal="modal-library" aria-label="Close library modal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <aside class="disclaimer-banner" style="margin-bottom:1rem;">
+          <div class="disclaimer-icon">💾</div>
+          <div style="font-size:0.85rem;">
+            <strong>Local Storage Notice:</strong> Saved proteins are stored locally in your current web browser. No external database or login server is used. Export your proteins to JSON to backup or transfer your work.
+          </div>
+        </aside>
+
+        <!-- Search & Filter / Import Controls -->
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
+          <div style="display:flex; gap:0.5rem;">
+            <button type="button" class="btn btn-outline btn-sm" id="btn-export-all-json">Export Library JSON</button>
+            <label class="btn btn-outline btn-sm" style="margin:0; cursor:pointer;">
+              Import JSON <input type="file" id="input-import-json" accept=".json" style="display:none;">
+            </label>
+            <button type="button" class="btn btn-outline btn-sm" id="btn-reset-presets">Restore Presets</button>
+          </div>
+        </div>
+
+        <!-- Table of Saved Proteins -->
+        <div style="overflow-x:auto;">
+          <table class="library-table" id="library-table">
+            <thead>
+              <tr>
+                <th>Protein Name</th>
+                <th>Category</th>
+                <th>Length</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="library-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline close-modal-btn" data-modal="modal-library">Close</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- =========================================================================
+       MODAL 2: ABOUT, PEDAGOGY & 4-STUDENT TEAM PLAN
+       ========================================================================= -->
+  <div class="modal-backdrop" id="modal-about" role="dialog" aria-modal="true" aria-labelledby="about-modal-title">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3 class="modal-title" id="about-modal-title">About ProteoBuild & Capstone Team Plan</h3>
+        <button type="button" class="icon-btn close-modal-btn" data-modal="modal-about" aria-label="Close about modal">&times;</button>
+      </div>
+
+      <div class="modal-body" style="font-size:0.92rem; line-height:1.6;">
+        <h4 style="margin-bottom:0.5rem; color:var(--accent-lavender);">Educational Purpose (BIA01 Unit III Syllabus)</h4>
+        <p>
+          ProteoBuild is an interactive biotechnology capstone simulator engineered to assist undergraduate and diploma biotechnology students in mastering protein structural hierarchy, the thermodynamics of folding, and environmental stability factors.
+        </p>
+
+        <h4 style="margin-top:1.25rem; margin-bottom:0.5rem; color:var(--accent-coral);">Explicit Scientific & Model Limitations</h4>
+        <p>
+          All 3D representations, cartoon ribbons, Ramachandran angle plots, and denaturation melting curves are <strong>simplified educational models</strong>. ProteoBuild does not predict atomic coordinates, calculate molecular dynamics (MD), or serve as a clinical or laboratory diagnostic software.
+        </p>
+
+        <h4 style="margin-top:1.25rem; margin-bottom:0.5rem; color:var(--accent-teal);">Four-Person Student Team Work Split</h4>
+        <div style="background:var(--bg-secondary); padding:1rem; border-radius:var(--radius-md); margin-bottom:1rem;">
+          <p><strong>Student 1 — Primary Structure:</strong> Amino-acid backbone anatomy, 20-residue chemical classification, sequence builder, physicochemical calculations (MW, pI, net charge, hydropathy), and Module 1 knowledge checks.</p>
+          <p><strong>Student 2 — Secondary Structure:</strong> Alpha-helix and beta-sheet (parallel vs antiparallel) schematics, backbone H-bond network inspector, Ramachandran plot dihedral explorer, and Module 2 knowledge checks.</p>
+          <p><strong>Student 3 — Tertiary & Quaternary Structure:</strong> Three.js interactive 3D teaching model, cartoon ribbon geometries, non-covalent force lines (H-bonds, disulfides, hydrophobic core), monomer vs oligomer assemblies, and Module 3 knowledge checks.</p>
+          <p><strong>Student 4 — Stability & Denaturation:</strong> Environmental controls (Temperature, pH, Urea), dynamic thermal melting curve, visual conformational state morphing, Anfinsen renaturation test, and Module 4 knowledge checks.</p>
+          <p class="text-muted"><small>Shared Contributions: Design system tokens, navigation, LocalStorage protein library, JSON import/export, accessibility audit, and GitHub Pages static deployment.</small></p>
+        </div>
+
+        <h4 style="margin-top:1.25rem; margin-bottom:0.5rem;">Local Storage vs. Cloud Storage Requirements</h4>
+        <p>
+          GitHub Pages hosts purely static files (HTML, CSS, JS). Saving functions run client-side using browser <code>LocalStorage</code>. Multi-device synchronization or persistent user accounts would require an external backend API (e.g. Node/Express, Supabase, or Firebase) with authentication, data privacy compliance, and database maintenance.
+        </p>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline close-modal-btn" data-modal="modal-about">Close</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- =========================================================================
+       MODAL 3: CERTIFICATE OF MASTERY
+       ========================================================================= -->
+  <div class="modal-backdrop" id="modal-certificate" role="dialog" aria-modal="true" aria-labelledby="cert-modal-title">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3 class="modal-title" id="cert-modal-title">Certificate of Completion & Mastery</h3>
+        <button type="button" class="icon-btn close-modal-btn" data-modal="modal-certificate" aria-label="Close certificate modal">&times;</button>
+      </div>
+
+      <div class="modal-body" id="cert-modal-body-container" style="text-align:center;">
+        <!-- Dynamically populated with Verified Certificate or Locked Progress checklist -->
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="window.print()">🖨️ Print / Save as PDF</button>
+        <button type="button" class="btn btn-outline close-modal-btn" data-modal="modal-certificate">Close</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Site Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div>
+        <strong>ProteoBuild</strong> — Biotechnology Capstone Educational Project (BIA01 Unit III).
+        <p class="text-muted"><small>Designed for static hosting on GitHub Pages with browser-based LocalStorage.</small></p>
+      </div>
+      <div>
+        <a href="#overview" class="btn btn-outline btn-sm">Back to Top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Script Module -->
+  <script type="module" src="app.js"></script>
+</body>
+</html>
